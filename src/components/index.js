@@ -5,3 +5,4 @@ export {default as TextInput} from './TextInput';
 export {default as PasswordInput} from './PasswordInput';
 export {default as RegistrationForm} from './RegistrationForm';
 export {default as Accordion} from './Accordion';
+export {default as DatePicker} from './DatePicker';
