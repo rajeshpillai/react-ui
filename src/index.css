@@ -2,6 +2,8 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: #666666;
+  padding: 0;
+  margin: 0;
 }
 
 a, a:visited {
@@ -58,4 +60,14 @@ table {
 
 .componentpage {
   margin-left: 275px;
+}
+
+.header {
+  background: yellow;
+  height: 40px;
+  vertical-align: middle;
+  line-height: 40px;
+  font-weight: bolder;
+  font-size: 1.5em;
+  padding: 5px;
 }
