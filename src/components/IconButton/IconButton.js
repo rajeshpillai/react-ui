@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './iconbutton.css';
 
-function IconButton({icon, location, children }) {
+function IconButton({icon, location, onClick, children }) {
     return (
-        <button>
+        <button onClick= {onClick}>
             {location === "left" && <i className={icon} aria-hidden="true"/>}
             {children} 
             {location === "right" && <i className={icon} aria-hidden="true"/>}
@@ -16,7 +16,10 @@ IconButton.propTypes = {
   icon: PropTypes.string,
   
   /** The location of the icon.  Valid values are "left", "right" */
-  location: PropTypes.string
+  location: PropTypes.string,
+
+  /** The click handler for the button */
+  onClick: PropTypes.func
 };
 
 IconButton.defaultProps = {

@@ -3,5 +3,11 @@ import IconButton from 'zs-react/IconButton';
 
 /** IconButton left simple example */
 export default function ExampleIconButton() {
-  return <IconButton icon="fa fa-address-book">Click me</IconButton>
+  function handleClick() {
+    alert('You clicked me!');
+  }
+  
+  return <IconButton icon="fa fa-address-book" onClick={handleClick}>
+    Click me
+  </IconButton>
 }
