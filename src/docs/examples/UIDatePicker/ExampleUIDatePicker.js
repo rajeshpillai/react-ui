@@ -1,9 +1,8 @@
 import React from 'react';
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
-
+import UIDatePicker from 'zs-react/UIDatePicker';
 /** Datepicker Example */
-export default class ExampleDatePicker extends React.Component {
+export default class ExampleUIDatePicker extends React.Component {
   constructor (props) {
       super(props);
       this.state = {
@@ -18,6 +17,6 @@ export default class ExampleDatePicker extends React.Component {
   }
 
   render() {
-     return <DatePicker selected={this.state.startDate} onChange = {this.handleChange} />
+     return <UIDatePicker selected={this.state.startDate} onChange = {this.handleChange} />
   }
 }

@@ -4,7 +4,7 @@ import './iconbutton.css';
 
 function IconButton({icon, location, onClick, children }) {
     return (
-        <button onClick= {onClick}>
+        <button className="button" onClick= {onClick}>
             {location === "left" && <i className={icon} aria-hidden="true"/>}
             {children} 
             {location === "right" && <i className={icon} aria-hidden="true"/>}

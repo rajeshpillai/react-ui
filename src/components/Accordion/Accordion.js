@@ -61,7 +61,7 @@ class Accordion extends React.Component {
 }
 Accordion.propTypes = {
   /** Message to display */
-  data: PropTypes.string
+  data: PropTypes.array
 };
 
 Accordion.defaultProps = {
