@@ -4,8 +4,8 @@ import DatePicker from 'react-datepicker';
 import  './uidatepicker.css';
  
 /** A simple datepicker wrapper. */
-function UIDatePicker({message}) {
-  return <DatePicker
+function UIDatePicker({selected, onChange}) {
+  return <DatePicker selected={selected} onChange = {onChange}
     />;
 }
 export default UIDatePicker;
