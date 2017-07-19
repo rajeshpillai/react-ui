@@ -5,6 +5,7 @@ export default class ExampleStarRatingFull extends React.Component {
   constructor (props) {
       super(props);
       this.state = {
+        rating: 4
       }
   }
   handleChange = (newRating) => {
@@ -14,7 +15,8 @@ export default class ExampleStarRatingFull extends React.Component {
   }
 
   render() {
-     return <StarRating count={5} size={24} value={4} colorActive={'#ffd700'}
+    var rating = this.state.rating;
+     return <StarRating count={5} size={24} value={rating} colorActive={'#ffd700'}
         onChange = {this.handleChange} />
   }
 }
