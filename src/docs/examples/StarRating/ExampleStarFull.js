@@ -5,7 +5,7 @@ export default class ExampleStarRatingFull extends React.Component {
   constructor (props) {
       super(props);
       this.state = {
-
+         rating: 5
       }
   }
   handleChange = (newRating) => {
