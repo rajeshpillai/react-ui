@@ -7,13 +7,18 @@ class Table extends React.Component {
    constructor (props) {
        super(props);
        this.sort = this.sort.bind(this);
+       this._toggleSearch = this._toggleSearch.bind(this);
+       this._search = this._search.bind(this);
+
        console.log("CTOR: ", this.props);
        this.state = {
            data: this.props.initialData,
            headers: [],
            sortby: null,
            descending: false
-       }
+       };
+
+       this._preSearchData = null;
    } 
 
    getCells(row) {
@@ -37,13 +42,77 @@ class Table extends React.Component {
        this.setState({
            data: data,
            sortby: column,
-           descending: descending
+           descending: descending,
+           search: false
        })
    }
 
    render() {
-       console.log("RENDER: ", this.props);
+        return (
+            <div>
+                {this._renderToolbar()}
+                {this._renderTable()}
+            </div>
+        );
+   }
+   _renderToolbar() {
+       return (
+            <button onClick={this._toggleSearch} className={'toolbar'}>
+                search
+            </button>
+       );
+   }
+
+   _toggleSearch() {
+       console.log("SEARCH: ", this.state.search);
+       if (this.state.search) {
+           this.setState({
+               data: this._preSearchData,
+               search: false
+           });
+           this._preSearchData = null;
+       } else {
+           this._preSearchData = this.state.data;
+           this.setState({
+                search: true
+           });
+       }
+   }
+
+   _search(e) {
+        console.log("searching..", e);
+        var needle = e.target.value.toLowerCase();
+        if (!needle) {
+            this.setState({data: this._preSearchData});
+            return;
+        }
+        var idx = e.target.dataset.idx;
+        var searchdata = this._preSearchData.filter(function(row) {
+          return row[idx].toString().toLowerCase().indexOf(needle) > -1;
+        });
        
+        this.setState({data: searchdata});
+   }
+
+   _renderSearch() {
+        if (!this.state.search) {
+            return null;
+        }
+        var searchHeader = this.props.headers.map(function (_ignore, idx) {
+            return (
+                <td key={idx}>
+                    <input type="text" data-idx={idx} />
+                </td>
+            );
+        });
+        return (
+            <tr onChange={this._search}>
+                {searchHeader}
+            </tr>
+        );
+   }
+
+   _renderTable() {
        var thead = this.props.headers.map ((title, index) => {
           if (this.state.sortby === index) {
               title += this.state.descending ? ' \u2191' : ' \u2193';
@@ -69,6 +138,7 @@ class Table extends React.Component {
                 </tr>
             </thead>
             <tbody>
+                {this._renderSearch()}
                 {tbody}
             </tbody>
         </table>
