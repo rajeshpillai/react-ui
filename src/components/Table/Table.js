@@ -6,6 +6,7 @@ import  './table.css';
 class Table extends React.Component {
    constructor (props) {
        super(props);
+       this.sort = this.sort.bind(this);
        console.log("CTOR: ", this.props);
        this.state = {
            data: this.props.initialData,
@@ -19,6 +20,18 @@ class Table extends React.Component {
      });
 
      return cells;
+   }
+
+   sort(e) {
+       var column = e.target.cellIndex;
+       var data = this.state.data.slice();
+       data.sort((a, b) => {
+         return a[column] > b[column];
+       });
+
+       this.setState({
+           data: data
+       })
    }
 
    render() {
@@ -38,7 +51,7 @@ class Table extends React.Component {
       
        return (
         <table>
-            <thead>
+            <thead onClick={this.sort}>
                 <tr>
                     {thead}
                 </tr>
