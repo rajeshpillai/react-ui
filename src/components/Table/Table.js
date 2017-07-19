@@ -10,7 +10,9 @@ class Table extends React.Component {
        console.log("CTOR: ", this.props);
        this.state = {
            data: this.props.initialData,
-           headers: []
+           headers: [],
+           sortby: null,
+           descending: false
        }
    } 
 
@@ -25,12 +27,17 @@ class Table extends React.Component {
    sort(e) {
        var column = e.target.cellIndex;
        var data = this.state.data.slice();
+       var descending = this.state.sortby === column && !this.state.descending;
+
        data.sort((a, b) => {
-         return a[column] > b[column];
-       });
+         return descending ? (a[column] < b[column] ? 1 : -1)
+            : (a[column] > b[column] ? 1 : -1);
+       }); 
 
        this.setState({
-           data: data
+           data: data,
+           sortby: column,
+           descending: descending
        })
    }
 
@@ -38,7 +45,12 @@ class Table extends React.Component {
        console.log("RENDER: ", this.props);
        
        var thead = this.props.headers.map ((title, index) => {
-          return <th key={index}>{title}</th>
+          if (this.state.sortby === index) {
+              title += this.state.descending ? ' \u2191' : ' \u2193';
+          }
+          return (
+            <th key={index}>{title}</th>
+          );
        });  
         
        var tbody = this.state.data.map ((row, index) => {
