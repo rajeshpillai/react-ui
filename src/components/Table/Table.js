@@ -8,10 +8,11 @@ class Table extends React.Component {
        super(props);
        console.log("CTOR: ", this.props);
        this.state = {
-           data: [],
+           data: this.props.initialData,
            headers: []
        }
    } 
+
    getCells(row) {
      var cells = row.map((cell, index) => {
         return <td key={index}>{cell}</td>
@@ -27,7 +28,7 @@ class Table extends React.Component {
           return <th key={index}>{title}</th>
        });  
         
-       var tbody = this.props.initialData.map ((row, index) => {
+       var tbody = this.state.data.map ((row, index) => {
           return (
             <tr key={index}>
                 {this.getCells(row)}
