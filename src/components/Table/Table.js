@@ -35,7 +35,6 @@ class Table extends React.Component {
             </tr>
           );
        });
-
       
        return (
         <table>
@@ -51,4 +50,13 @@ class Table extends React.Component {
     );
    }
 }
+
+Table.propTypes = {
+  /** Table headers array */
+  headers: PropTypes.array,
+
+  /** Initial data. */
+  initialData: PropTypes.array
+};
+
 export default Table;
