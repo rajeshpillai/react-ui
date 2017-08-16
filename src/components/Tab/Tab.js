@@ -72,7 +72,7 @@ export default class Tab extends Component {
     static TabPanels = TabPanels;
 
     render() {
-        const {isActive,isDisabled,onSelect} = this.props;
+        const {isActive,isDisabled,onSelect,children} = this.props;
         return (
             <div className={isDisabled 
                 ? 'tab disabled'
@@ -81,7 +81,7 @@ export default class Tab extends Component {
                     : 'tab'}
                 onClick={isDisabled ? null : onSelect}
                 >
-                {this.props.children}
+                {children}
             </div>
         )
     }
