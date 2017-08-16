@@ -37,7 +37,7 @@ class TabList extends Component {
             });
         })
         return (
-            <div className="tabs">
+            <div className="tablist">
                 {children}
             </div>
         )

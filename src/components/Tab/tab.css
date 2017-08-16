@@ -8,6 +8,7 @@
     border-bottom: 4px solid;
     border-bottom-color: #ccc;
     cursor: pointer;
+    float: left;
 }
 
 .active{
@@ -19,6 +20,7 @@
 }
 .tablist{
     font-size: 1.3em;
+    height: 60px;
 }
 
 .panels {
