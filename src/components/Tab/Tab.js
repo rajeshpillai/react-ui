@@ -7,16 +7,40 @@ class Tabs extends Component {
         activeIndex: 1
     }
 
-    selectTabIndex(activeIndex) {
+    selectTabIndex = (activeIndex) => {
+        console.log("state: ", activeIndex);
         this.setState({activeIndex});
     }
 
     render() {
+        const children = React.Children.map(this.props.children, (child) => {
+            return React.cloneElement(child, {
+                activeIndex: this.state.activeIndex,
+                onSelectTab: this.selectTabIndex
+            });
+        });
         return (
             <div className="tabs">
-                {this.props.children}
+                {children}
             </div>
         );
+    }
+}
+
+class TabList extends Component {
+    render() {
+        const {activeIndex, onSelectTab} = this.props;
+        const children = React.Children.map(this.props.children, (child,index) => {
+            return React.cloneElement(child, {
+                isActive: index === activeIndex,
+                onSelect: () => onSelectTab(index)
+            });
+        })
+        return (
+            <div className="tabs">
+                {children}
+            </div>
+        )
     }
 }
 
@@ -39,15 +63,7 @@ class TabPanel extends Component {
         )
     }
 }
-class TabList extends Component {
-    render() {
-        return (
-            <div className="tablist">
-                {this.props.children}
-            </div>
-        )
-    }
-}
+
 
 export default class Tab extends Component {
     static Tabs = Tabs;
@@ -56,15 +72,14 @@ export default class Tab extends Component {
     static TabPanels = TabPanels;
 
     render() {
-        const isActive = false; //todo:
-        const isDisabled = false;
+        const {isActive,isDisabled,onSelect} = this.props;
         return (
             <div className={isDisabled 
                 ? 'tab disabled'
                 : isActive
                     ? 'tab active'
                     : 'tab'}
-                onClick={isDisabled ? null : () => '???'}
+                onClick={isDisabled ? null : onSelect}
                 >
                 {this.props.children}
             </div>

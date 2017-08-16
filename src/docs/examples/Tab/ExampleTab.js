@@ -5,7 +5,6 @@ import FaIcon from 'zs-react/FaIcon';
 /** Tab example */
 export default class ExampleTab extends Component {
     componentDidMount() {
-        console.log("dmount");
     }
     render() {
         return (

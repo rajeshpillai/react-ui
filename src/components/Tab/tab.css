@@ -1,7 +1,7 @@
 .tabs {
 }
 
-.tab, active-tabi,.disabled-tab {
+.tab, .active,.disabled {
     display: 'inline-block';
     padding: 10px;
     margin: 10px;
