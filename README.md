@@ -4,7 +4,7 @@ A library of React components
 
 ## Install
 ```
-npm install zs-react-pattern-lib
+npm install react-ui
 ```
 
 ## Issues
