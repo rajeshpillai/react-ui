@@ -23,7 +23,7 @@ export default class Docs extends React.Component {
 
     return (
       <div>
-        <div className="header">ZENSAR: UI Pattern Library</div>
+        <div className="header">ALGORISYS: UI Library</div>
         <Navigation components={componentData.map(component => component.name)} />
         <ComponentPage component={component} />
       </div>
